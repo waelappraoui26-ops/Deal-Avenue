@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Deal Avenue — Sportswear</title>
+  <meta name="description" content="Deal Avenue — vêtements sportswear à prix accessibles.">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="header">
+  <a class="logo" href="#">DEAL <span>AVENUE</span></a>
+  <nav>
+    <a href="#produits">Produits</a>
+    <a href="#concept">Notre concept</a>
+    <button id="cartBtn" class="cart-btn">Panier <b id="cartCount">0</b></button>
+  </nav>
+</header>
+
+<main>
+  <section class="hero">
+    <div>
+      <p class="eyebrow">DEAL AVENUE</p>
+      <h1>Le sportswear,<br><span>au bon prix.</span></h1>
+      <p>Des pièces sport et lifestyle sélectionnées avec une priorité : proposer de bons prix sans compliquer l'achat.</p>
+      <a class="primary" href="#produits">Voir les produits</a>
+    </div>
+  </section>
+
+  <section id="produits" class="section">
+    <div class="section-head">
+      <div><p class="eyebrow">COLLECTION</p><h2>Nos produits</h2></div>
+      <select id="filter">
+        <option value="all">Tout</option>
+        <option value="ensembles">Ensembles</option>
+        <option value="accessoires">Accessoires</option>
+      </select>
+    </div>
+    <div id="products" class="grid"></div>
+  </section>
+
+  <section id="concept" class="concept">
+    <div><p class="eyebrow">DEAL AVENUE</p><h2>Des prix accessibles,<br>sans sacrifier le style.</h2></div>
+    <p>Tu peux aussi nous demander un produit précis. Envoie-nous ta demande et nous regarderons ce que nous pouvons trouver.</p>
+  </section>
+</main>
+
+<div id="cartPanel" class="drawer">
+  <div class="drawer-head"><h2>Ton panier</h2><button id="closeCart">×</button></div>
+  <div id="cartItems"></div>
+  <div class="cart-bottom">
+    <div class="total"><span>Total</span><strong id="cartTotal">0,00 €</strong></div>
+    <button id="checkoutBtn" class="primary full">Passer commande</button>
+  </div>
+</div>
+<div id="overlay" class="overlay"></div>
+
+<div id="checkoutModal" class="modal-wrap">
+  <div class="modal">
+    <button id="closeModal" class="modal-close">×</button>
+    <p class="eyebrow">COMMANDE</p>
+    <h2>Finaliser ma commande</h2>
+    <p class="muted">Remplis tes informations. La commande sera préparée pour être envoyée directement au vendeur.</p>
+    <form id="orderForm">
+      <input id="customerName" required placeholder="Nom et prénom">
+      <input id="customerPhone" required placeholder="Téléphone">
+      <input id="customerEmail" type="email" placeholder="E-mail (facultatif)">
+      <textarea id="customerAddress" required placeholder="Adresse de livraison"></textarea>
+      <textarea id="customerNote" placeholder="Note (taille, couleur, demande...)"></textarea>
+      <button class="primary full" type="submit">Envoyer ma commande</button>
+    </form>
+  </div>
+</div>
+
+<footer><span>© 2026 Deal Avenue</span><span>Sportswear & lifestyle</span></footer>
+<script src="script.js"></script>
+</body>
+</html>
