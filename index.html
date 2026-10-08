@@ -1,4 +1,892 @@
-<!-- ACCUEIL -->
+<!<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Deal Avenue — Sportswear</title>
+
+<style>
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background: #050505;
+    color: #fff;
+}
+
+/* =========================
+   HEADER
+========================= */
+
+header {
+    height: 78px;
+    background: #050505;
+    border-bottom: 1px solid #222;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 5%;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.logo {
+    font-size: 24px;
+    font-weight: 900;
+    letter-spacing: -1px;
+}
+
+.logo span {
+    color: #168cff;
+}
+
+nav {
+    display: flex;
+    gap: 35px;
+}
+
+nav a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 15px;
+    transition: 0.2s;
+}
+
+nav a:hover {
+    color: #168cff;
+}
+
+.cart-button {
+    background: #111;
+    border: 1px solid #333;
+    color: #fff;
+    padding: 11px 18px;
+    border-radius: 25px;
+    cursor: pointer;
+    font-size: 15px;
+    transition: 0.2s;
+}
+
+.cart-button:hover {
+    border-color: #168cff;
+}
+
+/* =========================
+   HERO
+========================= */
+
+.hero {
+    min-height: 390px;
+    display: flex;
+    align-items: center;
+    padding: 65px 7%;
+    background:
+        radial-gradient(
+            circle at 75% 45%,
+            #111a22 0%,
+            #080808 35%,
+            #050505 65%
+        );
+}
+
+.hero-content {
+    max-width: 750px;
+}
+
+.hero small {
+    color: #168cff;
+    letter-spacing: 4px;
+    font-weight: bold;
+    font-size: 13px;
+}
+
+.hero h1 {
+    font-size: clamp(48px, 7vw, 86px);
+    line-height: 0.95;
+    letter-spacing: -4px;
+    margin: 20px 0;
+}
+
+.hero p {
+    color: #999;
+    font-size: 18px;
+    line-height: 1.5;
+    max-width: 600px;
+}
+
+/* =========================
+   PRODUITS
+========================= */
+
+.products-section {
+    padding: 65px 4%;
+    background: #050505;
+}
+
+.section-title {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 32px;
+}
+
+.section-title h2 {
+    font-size: 36px;
+}
+
+.filters {
+    display: flex;
+    gap: 10px;
+}
+
+.filter {
+    background: #090909;
+    color: #ddd;
+    border: 1px solid #333;
+    border-radius: 20px;
+    padding: 9px 16px;
+    cursor: pointer;
+}
+
+.filter:hover,
+.filter.active {
+    border-color: #168cff;
+    color: #168cff;
+}
+
+/* =========================
+   GRILLE
+========================= */
+
+.products {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 18px;
+}
+
+/* =========================
+   CARTE PRODUIT
+========================= */
+
+.product {
+    background: #292c30;
+    border: 1px solid #3b3e42;
+    border-radius: 18px;
+    overflow: hidden;
+    transition: 0.25s;
+}
+
+.product:hover {
+    transform: translateY(-5px);
+    border-color: #168cff;
+}
+
+/*
+   Les images seront ajoutées ici plus tard.
+   Pour l'instant les emplacements sont gris.
+*/
+
+.product-image {
+    height: 350px;
+    background: #3a3d41;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #777;
+    font-size: 14px;
+    text-align: center;
+}
+
+.product-info {
+    padding: 20px;
+}
+
+.product-info h3 {
+    font-size: 18px;
+    margin-bottom: 8px;
+}
+
+.product-info p {
+    color: #999;
+    margin-bottom: 18px;
+}
+
+.add-cart {
+    width: 100%;
+    padding: 13px;
+    border-radius: 25px;
+    background: #080808;
+    border: 1px solid #168cff;
+    color: #fff;
+    cursor: pointer;
+    font-weight: bold;
+    transition: 0.2s;
+}
+
+.add-cart:hover {
+    background: #168cff;
+}
+
+/* =========================
+   PANIER
+========================= */
+
+.cart-panel {
+    position: fixed;
+    top: 0;
+    right: -420px;
+
+    width: 400px;
+    max-width: 100%;
+    height: 100vh;
+
+    background: #101010;
+    border-left: 1px solid #333;
+
+    z-index: 200;
+
+    padding: 25px;
+
+    transition: 0.3s;
+
+    overflow-y: auto;
+}
+
+.cart-panel.open {
+    right: 0;
+}
+
+.cart-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+}
+
+.cart-header h2 {
+    font-size: 25px;
+}
+
+.close-cart {
+    background: none;
+    border: none;
+    color: #fff;
+    font-size: 28px;
+    cursor: pointer;
+}
+
+.cart-item {
+    background: #292c30;
+    border-radius: 12px;
+    padding: 15px;
+    margin-bottom: 12px;
+}
+
+.cart-item strong {
+    display: block;
+    margin-bottom: 12px;
+}
+
+.quantity {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+.quantity button {
+    width: 30px;
+    height: 30px;
+
+    background: #080808;
+    border: 1px solid #444;
+
+    color: #fff;
+
+    border-radius: 50%;
+
+    cursor: pointer;
+}
+
+.quantity button:hover {
+    border-color: #168cff;
+    color: #168cff;
+}
+
+.cart-total {
+    border-top: 1px solid #333;
+    margin-top: 25px;
+    padding-top: 20px;
+    font-size: 20px;
+}
+
+.order-button {
+    width: 100%;
+    margin-top: 20px;
+    padding: 15px;
+
+    background: #168cff;
+    border: none;
+
+    border-radius: 25px;
+
+    color: #fff;
+    font-weight: bold;
+
+    cursor: pointer;
+}
+
+.order-button:hover {
+    background: #0d73d4;
+}
+
+/* =========================
+   OVERLAY
+========================= */
+
+.overlay {
+    position: fixed;
+    inset: 0;
+
+    background: rgba(0, 0, 0, 0.65);
+
+    z-index: 150;
+
+    display: none;
+}
+
+.overlay.active {
+    display: block;
+}
+
+/* =========================
+   MOBILE
+========================= */
+
+@media (max-width: 1000px) {
+
+    .products {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+}
+
+@media (max-width: 650px) {
+
+    header {
+        padding: 0 20px;
+    }
+
+    nav {
+        display: none;
+    }
+
+    .hero {
+        padding: 55px 25px;
+        min-height: 350px;
+    }
+
+    .hero h1 {
+        font-size: 50px;
+        letter-spacing: -2px;
+    }
+
+    .products-section {
+        padding: 45px 20px;
+    }
+
+    .section-title {
+        display: block;
+    }
+
+    .section-title h2 {
+        margin-bottom: 20px;
+    }
+
+    .filters {
+        overflow-x: auto;
+        padding-bottom: 5px;
+    }
+
+    .products {
+        grid-template-columns: 1fr;
+    }
+
+    .product-image {
+        height: 320px;
+    }
+
+    .cart-panel {
+        width: 100%;
+    }
+}
+</style>
+</head>
+
+
+<body>
+
+<!-- =========================
+     HEADER
+========================= -->
+
+<header>
+
+    <div class="logo">
+        DEAL <span>AVENUE</span>
+    </div>
+
+    <nav>
+        <a href="#accueil">Accueil</a>
+        <a href="#produits">Produits</a>
+    </nav>
+
+    <button class="cart-button" onclick="openCart()">
+        🛒 Panier <span id="cart-count">0</span>
+    </button>
+
+</header>
+
+
+<!-- =========================
+     ACCUEIL
+========================= -->
+
+<section class="hero" id="accueil">
+
+    <div class="hero-content">
+
+        <small>DEAL AVENUE</small>
+
+        <h1>
+            Le sportswear<br>
+            au bon prix.
+        </h1>
+
+        <p>
+            Des pièces sport et lifestyle sélectionnées
+            avec une priorité : proposer de bons prix
+            sans compliquer l'achat.
+        </p>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     PRODUITS
+========================= -->
+
+<section class="products-section" id="produits">
+
+    <div class="section-title">
+
+        <h2>Tous nos produits</h2>
+
+        <div class="filters">
+
+            <button class="filter active">
+                Tous
+            </button>
+
+            <button class="filter">
+                Ensembles
+            </button>
+
+            <button class="filter">
+                Accessoires
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <div class="products">
+
+
+        <!-- PRODUIT 1 -->
+
+        <article class="product">
+
+            <div class="product-image">
+                PHOTO ESSENTIALS
+            </div>
+
+            <div class="product-info">
+
+                <h3>
+                    Ensemble Essentials
+                </h3>
+
+                <p>
+                    Prix à définir
+                </p>
+
+                <button
+                    class="add-cart"
+                    onclick="addToCart('Ensemble Essentials')">
+
+                    🛒 Ajouter au panier
+
+                </button>
+
+            </div>
+
+        </article>
+
+
+        <!-- PRODUIT 2 -->
+
+        <article class="product">
+
+            <div class="product-image">
+                PHOTO NIKE RUNNING
+            </div>
+
+            <div class="product-info">
+
+                <h3>
+                    Ensemble Nike Running
+                </h3>
+
+                <p>
+                    Prix à définir
+                </p>
+
+                <button
+                    class="add-cart"
+                    onclick="addToCart('Ensemble Nike Running')">
+
+                    🛒 Ajouter au panier
+
+                </button>
+
+            </div>
+
+        </article>
+
+
+        <!-- PRODUIT 3 -->
+
+        <article class="product">
+
+            <div class="product-image">
+                PHOTO ENSEMBLE VERT / NOIR
+            </div>
+
+            <div class="product-info">
+
+                <h3>
+                    Ensemble vert / noir
+                </h3>
+
+                <p>
+                    Prix à définir
+                </p>
+
+                <button
+                    class="add-cart"
+                    onclick="addToCart('Ensemble vert / noir')">
+
+                    🛒 Ajouter au panier
+
+                </button>
+
+            </div>
+
+        </article>
+
+
+        <!-- PRODUIT 4 -->
+
+        <article class="product">
+
+            <div class="product-image">
+                PHOTO CASQUETTES
+            </div>
+
+            <div class="product-info">
+
+                <h3>
+                    Casquette noire
+                </h3>
+
+                <p>
+                    Prix à définir
+                </p>
+
+                <button
+                    class="add-cart"
+                    onclick="addToCart('Casquette noire')">
+
+                    🛒 Ajouter au panier
+
+                </button>
+
+            </div>
+
+        </article>
+
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     FOND DU PANIER
+========================= -->
+
+<div
+    class="overlay"
+    id="overlay"
+    onclick="closeCart()">
+</div>
+
+
+<!-- =========================
+     PANIER
+========================= -->
+
+<div
+    class="cart-panel"
+    id="cart">
+
+
+    <div class="cart-header">
+
+        <h2>
+            Mon panier
+        </h2>
+
+        <button
+            class="close-cart"
+            onclick="closeCart()">
+
+            ×
+
+        </button>
+
+    </div>
+
+
+    <div id="cart-items">
+
+        <p style="color:#888;">
+            Ton panier est vide.
+        </p>
+
+    </div>
+
+
+    <div class="cart-total">
+
+        Articles :
+        <span id="total-items">
+            0
+        </span>
+
+    </div>
+
+
+    <button class="order-button">
+        Passer commande
+    </button>
+
+
+</div>
+
+
+<!-- =========================
+     JAVASCRIPT
+========================= -->
+
+<script>
+
+let cart = [];
+
+
+/* AJOUTER AU PANIER */
+
+function addToCart(product) {
+
+    const existing =
+        cart.find(item => item.name === product);
+
+
+    if (existing) {
+
+        existing.quantity++;
+
+    } else {
+
+        cart.push({
+
+            name: product,
+            quantity: 1
+
+        });
+
+    }
+
+
+    updateCart();
+
+}
+
+
+/* RETIRER DU PANIER */
+
+function removeFromCart(product) {
+
+    const item =
+        cart.find(item => item.name === product);
+
+
+    if (!item) {
+        return;
+    }
+
+
+    item.quantity--;
+
+
+    if (item.quantity <= 0) {
+
+        cart =
+            cart.filter(item => item.name !== product);
+
+    }
+
+
+    updateCart();
+
+}
+
+
+/* ACTUALISER LE PANIER */
+
+function updateCart() {
+
+    const container =
+        document.getElementById("cart-items");
+
+
+    let total = 0;
+
+
+    cart.forEach(item => {
+
+        total += item.quantity;
+
+    });
+
+
+    document.getElementById("cart-count")
+        .textContent = total;
+
+
+    document.getElementById("total-items")
+        .textContent = total;
+
+
+    if (cart.length === 0) {
+
+        container.innerHTML = `
+            <p style="color:#888;">
+                Ton panier est vide.
+            </p>
+        `;
+
+        return;
+    }
+
+
+    container.innerHTML = cart.map(item => `
+
+        <div class="cart-item">
+
+            <strong>
+                ${item.name}
+            </strong>
+
+            <div class="quantity">
+
+                <button
+                    onclick="removeFromCart('${item.name}')">
+
+                    −
+
+                </button>
+
+
+                <span>
+                    ${item.quantity}
+                </span>
+
+
+                <button
+                    onclick="addToCart('${item.name}')">
+
+                    +
+
+                </button>
+
+            </div>
+
+        </div>
+
+    `).join("");
+
+}
+
+
+/* OUVRIR PANIER */
+
+function openCart() {
+
+    document
+        .getElementById("cart")
+        .classList.add("open");
+
+
+    document
+        .getElementById("overlay")
+        .classList.add("active");
+
+}
+
+
+/* FERMER PANIER */
+
+function closeCart() {
+
+    document
+        .getElementById("cart")
+        .classList.remove("open");
+
+
+    document
+        .getElementById("overlay")
+        .classList.remove("active");
+
+}
+
+</script>
+
+</body>
+</html>-- ACCUEIL -->
 <section id="accueil" class="hero">
     <div class="hero-content">
 
